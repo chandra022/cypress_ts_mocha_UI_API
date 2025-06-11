@@ -19,11 +19,12 @@ import 'cypress-mochawesome-reporter/register';
 
 
 Cypress.on('uncaught:exception', (err: Error, runnable: Mocha.Runnable) => {
-    if (
-      err.message.includes('Script error') ||
-      err.message.includes('cross origin')
-    ) {
+    // if (
+    //   err.message.includes('Script error') ||
+    //   err.message.includes('cross origin')
+    // ) {
       // Prevents Cypress from failing the test
       return false;
-    }
+    // }
+    // console.log( err.message);
   });

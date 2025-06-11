@@ -1,6 +1,7 @@
 /// <reference types="cypress" />
 import 'cypress-downloadfile/lib/downloadFileCommand';
 import 'cypress-file-upload';
+import '@4tw/cypress-drag-drop';
 
 // ***********************************************
 // This example commands.ts shows you how to

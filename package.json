@@ -5,13 +5,11 @@
   "scripts": {
     "test": "cypress run --e2e",
     "practice:test": "cypress run --spec cypress/e2e/practice_test.cy.ts -b chrome --headed",
-
     "clean:merge:json": "rimraf cypress/reports/html/merged-report.json",
     "clear:html:report": "rimraf cypress/reports/html/index.html",
     "report:merge": "mochawesome-merge cypress/reports/html/*.json > cypress/reports/html/merged-report.json",
     "report:generate": "merge cypress/reports/html/merged-report.json --reportDir cypress/reports/html --inline --overwrite",
     "report": "npm run report:merge && npm run report:generate",
-
     "execution:OLD": "npm run practice:test && npm run clear:html:report && npm run clean:merge:json && npm run report",
     "execution": "npm run practice:test && npm run report"
   },
@@ -20,6 +18,7 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@4tw/cypress-drag-drop": "^2.3.0",
     "@types/chai": "^5.0.1",
     "@types/mocha": "^10.0.10",
     "chai": "^5.1.2",
@@ -27,6 +26,7 @@
     "cypress": "^14.4.1",
     "cypress-downloadfile": "^1.2.4",
     "cypress-file-upload": "^5.0.8",
+    "cypress-iframe": "^1.0.1",
     "cypress-mochawesome-reporter": "^3.8.2",
     "fs-extra": "^11.3.0",
     "inversify": "^7.5.2",

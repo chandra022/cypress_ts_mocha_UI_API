@@ -1,4 +1,5 @@
 /// <reference types="cypress-downloadfile"/>
+import "cypress-iframe";
 
 describe.skip("Practice Test Suite", () => {
 
@@ -120,7 +121,7 @@ describe("Demo QA Site Practice - Elements", () => {
 
     });
 
-    it.only( "Handling with Buttons", () => {
+    it( "Handling with Buttons", () => {
 
         cy.visit( 'https://demoqa.com/buttons' );
 
@@ -194,8 +195,93 @@ describe("Demo QA Site Practice - Elements", () => {
             // });
         cy.get( '#uploadFile' ).attachFile( 'downloads.htm' );
            
+    });
+
+
+    it.only("Handling - Sortables", () => {
+        cy.visit( "https://jqueryui.com/droppable/" );
+
+        // cy.frameLoaded( 'iframe.demo-frame' );
+        // cy.iframe( 'iframe.demo-frame' ).find( 'div#draggable' ).drag( 'div#droppable' );
+
+        // cy.enter( 'iframe.demo-frame' ).then( iframeBody => {
+        //     iframeBody().find('#draggable').drag( '#droppable' );
+        // })
+
+        cy.get( 'iframe.demo-frame').its( '0.contentDocument.body')
+            .should('not.be.empty')
+            // .within( () => {
+                // cy.wait( 1000 );
+
+                //  cy.get('div#draggable')
+                //     .should('be.visible')
+                //     .drag('div#droppable');
+
+                // cy.wait( 5000 );
+            .then( ($body) =>{
+                 const dataTransfer = new DataTransfer();
+
+                cy.wrap($body)
+                    .find('#draggable')
+                    .trigger('mousedown', { which: 1 });
+
+                cy.wrap($body)
+                    .find('#droppable')
+                    .trigger('mousemove', { which: 1 })
+                    .trigger('mouseup', { force: true });
+            })
+
+        // cy.get( '#draggable' ).drag( 'droppable' );
+        // cy.get('#droppable').should('contain.text', 'Dropped!');
+        
+
+
+        // cy.visit( 'https://demoqa.com/interaction' );
+        // cy.visit( 'https://demoqa.com/dragabble' );
+        // cy.get( 'span.text' ).contains( 'Droppable' ).click();
+        // cy.get('h1.text-center').scrollIntoView();
+
+
+        // cy.get( '#draggable' ).drag( '#droppable' );
+
+        // let target_x: number , target_y:number;
+
+        // cy.get( 'div.create-grid > div.list-group-item' ).contains( 'Two')
+        // .then( ($elm) => {
+        //     const rect = $elm[0].getBoundingClientRect();
+        //     target_x = rect.x;
+        //     target_y = rect.y;
+
+        //      cy.get( 'div.create-grid > div.list-group-item' ).contains( "One")
+        //     .trigger( 'mousedown', { which: 1 })
+        //     .trigger( 'mousemove', { clientX : target_x, clientY : target_y } )
+        //     .trigger( 'mouseup', { force : true } );
+        // });
+
+       
+
+        // const dataTransfer = new DataTransfer();
+        // cy.get( 'div.create-grid > div.list-group-item' ).contains( "One")
+        //     // .trigger( 'mousedown', { which: 1})
+        //     .trigger( 'dragStart', { dataTransfer , force:true} );
+        
+        // cy.get( 'div.create-grid > div.list-group-item' ).contains( 'Two')
+        //     .trigger( 'dragOver', { dataTransfer , force:true} )
+        //     .trigger( 'drop', { dataTransfer , force:true} );
+        //     // .trigger( 'mouseup', {force:true} );
+
+        // // cy.get( 'div.create-grid > div.list-group-item' ).contains( "One" )
+        // //     .trigger( 'dragend', { dataTransfer } );
+
+        // cy.get('div.create-grid > .list-group-item').eq(0).should('contain.text', 'Two');
+        
+        
+        // // cy.get( '.vertical-list-container > :nth-child(1)' ).drag( '.vertical-list-container > :nth-child(2)' );
     })
 })
+
+
+
 
 
 
