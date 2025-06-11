@@ -120,7 +120,7 @@ describe("Demo QA Site Practice - Elements", () => {
 
     });
 
-    it( "Handling with Buttons", () => {
+    it.only( "Handling with Buttons", () => {
 
         cy.visit( 'https://demoqa.com/buttons' );
 
@@ -154,7 +154,7 @@ describe("Demo QA Site Practice - Elements", () => {
         cy.go( 'back' );
     })
 
-    it.only('Handling File Download and Upload', () => {
+    it('Handling File Download and Upload', () => {
 
         cy.visit( 'https://demoqa.com/upload-download' );
 
@@ -165,7 +165,7 @@ describe("Demo QA Site Practice - Elements", () => {
         //   );
 
 
-        cy.get( '#downloadButton' )
+        cy.get( '#downloadButton' ).scrollIntoView()
             .then( ( $elm ) => {
                 const href = $elm.attr( 'href' );
                 const fileName = $elm.attr( 'download' ) || 'download_image.jpeg';

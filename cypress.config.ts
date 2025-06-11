@@ -28,7 +28,7 @@ export default defineConfig({
   requestTimeout: 5000,
   responseTimeout: 30000,
   // slowTestThreshold: 10000,
-  taskTimeout: 300000,
+  taskTimeout: 120000,
 
   includeShadowDom: false,
   // justInTimeCompile: true,
@@ -37,13 +37,18 @@ export default defineConfig({
     runMode: 2,
     openMode: 0,
   },
-  reporter: "mochawesome",
+  reporter: "cypress-mochawesome-reporter",
   reporterOptions: {
-    reportDir: "cypress/reports",
+    reportDir: "cypress/reports/html",
     overwrite: false,
     html: true,
     json: true,
+    charts: true,
+    embeddedScreenshots: true,
+    inlineAssets: true,
+    reportPageTitle: "Cypress Test Report"
   },
+
   e2e: {
     baseUrl: "https://ultimateqa.com/automation",
     specPattern: "cypress/e2e/**/*.cy.ts",
@@ -57,10 +62,12 @@ export default defineConfig({
           return writeBase64File(filePath, base64Data);
         },
       });
+      require( 'cypress-mochawesome-reporter/plugin' )(on);
       return config;
     },
     downloadsFolder: 'cypress/downloads',
   },
+
   env:{
     apiBaseUrl:'https://reqres.in/'
   }

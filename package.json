@@ -3,8 +3,17 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "practice_test": "npm cypress run --spec cypress/e2e/practice_test.cy.ts -b chrome --headed"
+    "test": "cypress run --e2e",
+    "practice:test": "cypress run --spec cypress/e2e/practice_test.cy.ts -b chrome --headed",
+
+    "clean:merge:json": "rimraf cypress/reports/html/merged-report.json",
+    "clear:html:report": "rimraf cypress/reports/html/index.html",
+    "report:merge": "mochawesome-merge cypress/reports/html/*.json > cypress/reports/html/merged-report.json",
+    "report:generate": "merge cypress/reports/html/merged-report.json --reportDir cypress/reports/html --inline --overwrite",
+    "report": "npm run report:merge && npm run report:generate",
+
+    "execution:OLD": "npm run practice:test && npm run clear:html:report && npm run clean:merge:json && npm run report",
+    "execution": "npm run practice:test && npm run report"
   },
   "keywords": [],
   "author": "",
@@ -18,11 +27,15 @@
     "cypress": "^14.4.1",
     "cypress-downloadfile": "^1.2.4",
     "cypress-file-upload": "^5.0.8",
+    "cypress-mochawesome-reporter": "^3.8.2",
     "fs-extra": "^11.3.0",
     "inversify": "^7.5.2",
     "mocha": "^11.1.0",
     "mochawesome": "^7.1.3",
+    "mochawesome-merge": "^5.0.0",
+    "mochawesome-report-generator": "^6.2.0",
     "path": "^0.12.7",
+    "rimraf": "^6.0.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.3"
   },
