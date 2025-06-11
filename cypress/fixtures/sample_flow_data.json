@@ -1,0 +1,8 @@
+{
+    "contactAdmin" : {
+        "name" : "abc",
+        "mail" : "abc@xyz.com",
+        "userMessage" : "Thanks for Inviting to the great team.",
+        "successfullRegisterMessage": "Thanks for contacting us"
+    }
+}

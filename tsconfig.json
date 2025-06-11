@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+      "target": "ES6",
+      "module": "CommonJS",
+      "strict": true,
+      "noImplicitAny": false,
+      "outDir": "./dist",
+      "rootDir": "./",
+      "resolveJsonModule": true,
+      "esModuleInterop": true,
+      "types": ["cypress"]
+    },
+    "include": ["./node_modules/cypress", "cypress/**/*.ts"]
+  }
